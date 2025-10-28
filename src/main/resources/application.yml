@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: inventory
+  r2dbc:
+#    url: ${DB_POSTGRES_URL}
+#    username: ${DB_POSTGRES_USERNAME}
+#    password: ${DB_POSTGRES_PASSWORD}
+    #url: r2dbc:postgresql://localhost:5432/postgres
+    #url: r2dbc:postgresql://host.docker.internal:5432/postgres
+    url: r2dbc:postgresql://database-grupo-4.clkqgco8gqzm.us-east-2.rds.amazonaws.com:5432/postgres?sslmode=require
+    username: postgres
+    password: postgres
+server:
+  port: 8084
+
+
+# ===============================================~
+# ADD YOUR EXTERNAL RESOURCE CONFIGURATION HERE
+# ===============================================~
+external:
+  api:
+    product-url: "https://avm02saaxg.execute-api.us-east-2.amazonaws.com/v1/api/products" # The base URL for the Product API
+    timeout-ms: 3000
+
+
+cloud:
+  aws:
+    region:
+      static: us-east-1 # Your AWS region
+    # Best practice is to use IAM roles/profiles; static keys are for simple demos
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+
+keys:
+  product-base-url: ${PRODUCT_BASE_URL}
+  queue-name-inventory-movements: ${QUEUE_NAME_MOVEMENTS}
+  api-timeout: ${TIMEOUT_MS}
