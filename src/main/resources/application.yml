@@ -1,6 +1,13 @@
 spring:
   application:
     name: inventory
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
   r2dbc:
 #    url: ${DB_POSTGRES_URL}
 #    username: ${DB_POSTGRES_USERNAME}
@@ -23,14 +30,14 @@ external:
     timeout-ms: 3000
 
 
-cloud:
-  aws:
-    region:
-      static: us-east-1 # Your AWS region
-    # Best practice is to use IAM roles/profiles; static keys are for simple demos
-    credentials:
-      access-key: ${AWS_ACCESS_KEY}
-      secret-key: ${AWS_SECRET_KEY}
+#cloud:
+#  aws:
+#    region:
+#      static: us-east-1 # Your AWS region
+#    # Best practice is to use IAM roles/profiles; static keys are for simple demos
+#    credentials:
+#      access-key: ${AWS_ACCESS_KEY}
+#      secret-key: ${AWS_SECRET_KEY}
 
 keys:
   product-base-url: ${PRODUCT_BASE_URL}
